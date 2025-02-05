@@ -1,38 +1,33 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Upload as UploadIcon } from '@mui/icons-material';
+import './FileUpload.css'
 
 function FileUpload({ onFileUploaded }) {
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    onFileUploaded(file);
-  };
+  const onDrop = useCallback(acceptedFiles => {
+      const file = acceptedFiles[0];
+      if (file) onFileUploaded(file);
+    }, [onFileUploaded]);
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    onFileUploaded(file);
-  };
-
-  const preventDefaults = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      onDrop,
+      accept: '.csv',
+      multiple: false
+    });
 
   return (
     <div
-        onDragEnter={preventDefaults}
-        onDragOver={preventDefaults}
-        onDrop={handleDrop}
-        style={{
-            border: '2px dashed #ccc',
-            borderRadius: '20px',
-            padding: '20px',
-            textAlign: 'center',
-            cursor: 'pointer'
-        }}
-    >
-      <input type="file" accept=".csv" onChange={handleFileChange} style={{ display: 'none' }} id="fileElem" />
-      <p>Drag & drop CSV file here or click to select file</p>
-    </div>
+          {...getRootProps()}
+          className={`upload-container ${isDragActive ? 'active' : ''}`}
+        >
+          <input {...getInputProps()} />
+          <UploadIcon fontSize="large" />
+          <p>
+            {isDragActive
+              ? 'Drop the CSV file here'
+              : 'Drag & drop CSV file, or click to select'}
+          </p>
+        </div>
   );
 }
 
