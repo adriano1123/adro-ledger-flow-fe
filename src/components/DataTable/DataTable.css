@@ -1,0 +1,18 @@
+.upload-container {
+  border: 2px dashed #6c5ce7;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-container.active {
+  background-color: rgba(108, 92, 231, 0.1);
+  border-color: #4b37d0;
+}
+
+.upload-container p {
+  margin: 1rem 0 0;
+  color: #666;
+}
