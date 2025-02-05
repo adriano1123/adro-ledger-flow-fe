@@ -22,7 +22,7 @@ function DataTable({ transactions }) {
                   <td>{transaction.transactionDate}</td>
                   <td>{transaction.purchaseDate}</td>
                   <td>{transaction.description}</td>
-                  <td>€{transaction.amount}</td>
+                  <td>${transaction.amount}</td>
                   <td>{transaction.account}</td>
                   <td>{transaction.cardHolder}</td>
                   <td>{transaction.hasChanged ? '✅' : '🔄'}</td>
