@@ -49,7 +49,7 @@ function FileUploadPage() {
       setTransactions(response.data);
       setTotal(response.data.reduce((sum, t) => sum + t.amount, 0));
     } catch (err) {
-      setError('Error processing file. Please check the format and try again.');
+      setError('Error processing file. Please check the format and try again. ' + err);
     } finally {
       setLoading(false);
     }
