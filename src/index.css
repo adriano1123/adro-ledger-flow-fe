@@ -18,7 +18,16 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
+}
+
+.data-summary-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.summary-container, data-table-container {
+    margin: 16px;
 }
 
 .header {
