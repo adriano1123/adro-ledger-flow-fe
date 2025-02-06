@@ -48,7 +48,7 @@ function FileUploadPage() {
     };
 
     return (
-        <div> {/* No extra div needed here */}
+        <div className="data-module-container"> {/* No extra div needed here */}
             <div className="upload-section"> {/* Keep your existing structure */}
                 <FileUpload onFileUploaded={handleUpload}/>
                 {loading && <div className="loading">Processing...</div>}
@@ -60,7 +60,7 @@ function FileUploadPage() {
 
 function DataRetrievalPage() {
     return (
-        <div className="data-summary-container">
+        <div className="data-module-container">
             <h2>🔍Retrieve Data</h2>
             <DataRetrieval/>
         </div>
