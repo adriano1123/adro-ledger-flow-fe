@@ -21,7 +21,7 @@ function App() {
                 </nav>
             </aside>
             <div className="app-container">
-                <h1>💳 Credit Card Statement Processor</h1>
+                <h1 className="card-title text-purple mb-4">💳 Credit Card Statement Processor</h1>
 
                 <Routes>
                     <Route path="/" element={<FileUploadPage/>}/>
@@ -61,7 +61,7 @@ function FileUploadPage() {
 function DataRetrievalPage() {
     return (
         <div className="data-module-container">
-            <h2>🔍Retrieve Data</h2>
+            <h2 className="card-title text-purple mb-4">🔍Retrieve Data</h2>
             <DataRetrieval/>
         </div>
     );

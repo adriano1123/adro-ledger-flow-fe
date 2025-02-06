@@ -1,15 +1,16 @@
 .summary-container {
-    position: fixed;
-    top: 467px;
-    right: 20px;
-    width: 200px;
-    padding: 10px;
-    background-color: lightcoral;
-    border: 2px dashed #6c5ce7;
-    border-radius: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.total-amount {
+    font-size: 1.5rem;
+    color: #4b37d0;
+    font-weight: bold;
+    margin: 1rem 0;
 }
 
 .summary-container.active {

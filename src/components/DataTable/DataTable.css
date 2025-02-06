@@ -1,11 +1,22 @@
 .data-table-container {
-    padding: 10px;
-    background-color: lightblue;
-    border: 2px dashed #6c5ce7;
-    border-radius: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.table-responsive {
+    border-radius: 12px;
+}
+
+.table thead th {
+    background: #6c5ce7;
+    color: white;
+    border-bottom: none;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(108, 92, 231, 0.03);
 }
 
 .data-table-container.active {

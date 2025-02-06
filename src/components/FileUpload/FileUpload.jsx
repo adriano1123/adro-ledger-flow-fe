@@ -38,7 +38,7 @@ const FileUpload = () => {
 
     return (
         <div className="file-upload-container">
-            <h2>📤 Upload Transactions File</h2>
+            <h2 className="card-title text-purple mb-4">📤 Upload Transactions File</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Card Type</Form.Label>

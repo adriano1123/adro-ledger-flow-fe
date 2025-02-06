@@ -7,6 +7,9 @@ const Summary = ({total}) => (
         <div className="total-amount">
             ${total.toFixed(2)}
         </div>
+        <div className="each-person">
+
+        </div>
     </div>
 );
 

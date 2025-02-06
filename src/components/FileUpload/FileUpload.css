@@ -1,10 +1,20 @@
 .file-upload-container {
-    border: 2px dashed #6c5ce7;
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    cursor: pointer;
+    border: 2px dashed #adb5bd;
+    background: white;
     transition: all 0.3s ease;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+}
+
+.file-upload-container:hover {
+    border-color: #6c5ce7;
+    background: rgba(108, 92, 231, 0.05);
+}
+
+.upload-section h2 {
+    color: #4b37d0;
+    margin-bottom: 1.5rem;
 }
 
 .file-upload-container.active {
