@@ -3,8 +3,9 @@ import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import FileUpload from './components/FileUpload/FileUpload';
 import DataTable from './components/DataTable/DataTable';
 import Summary from './components/Summary/Summary';
-import apiService from './services/apiService';
-import './App.css'; // Import your CSS file
+import './App.css';
+import * as apiService from "./services/apiService";
+import DataRetrieval from "./components/DataRetrieval/DataRetrieval"; // Import your CSS file
 
 function App() {
     return (
@@ -76,7 +77,7 @@ function DataRetrievalPage() {
     return (
         <div>
             <h2>Retrieve Data</h2>
-            {/* Your data retrieval logic here */}
+            <DataRetrieval/>
         </div>
     );
 }

@@ -1,42 +1,73 @@
-import React, {useEffect, useState} from 'react';
-import apiService from '../../services/apiService'; // Import your API service
-import DataTable from '../DataTable/DataTable'; // Import your DataTable component
+import { useState } from 'react';
+import DataTable from '../DataTable/DataTable';
+import { Form, Button } from 'react-bootstrap';
+import { fetchTransactions } from '../../services/apiService';
 
-function DataRetrieval() {
-    const [retrievedData, setRetrievedData] = useState([]);
+const DataRetrieval = () => {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedCard, setSelectedCard] = useState('all');
+    const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const handleRetrieve = async () => {
+        try {
             setLoading(true);
-            setError(null);
-            try {
-                const response = await apiService.getTransactions(); // Call a new API method (see below)
-                setRetrievedData(response.data);
-            } catch (err) {
-                setError('Error retrieving data.');
-                console.error(err); // Log the error for debugging
-            } finally {
-                setLoading(false);
-            }
-        };
+            // Format date as YYYY-MM-01 (first day of the month)
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const monthParam = `${year}-${month}-01`;
 
-        fetchData();
-    }, []); // Empty dependency array ensures this runs only once on mount
+            const data = await fetchTransactions(
+                monthParam,  // Pass formatted date
+                selectedCard === 'all' ? null : selectedCard
+            );
+            setTransactions(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('Failed to retrieve transactions');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <div>
-            <h2>Retrieve Data</h2>
-            {loading && <p>Loading data...</p>}
-            {error && <p style={{color: 'red'}}>{error}</p>} {/* Display error message */}
-            {retrievedData.length > 0 ? (
-                <DataTable transactions={retrievedData}/> // Pass retrieved data to DataTable
-            ) : !loading && !error ? ( // Check if is not loading and neither has error
-                <p>No data retrieved yet.</p>
-            ) : null}
+        <div className="data-retrieval-container">
+            <h2>🔍 Retrieve Transactions</h2>
+            <div className="retrieval-controls mb-4">
+                <Form.Group className="me-3">
+                    <Form.Label>Select Month</Form.Label>
+                    <Form.Control
+                        type="date"
+                        value={selectedDate.toISOString().split('T')[0]} // Show full date
+                        onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                    />
+                </Form.Group>
+
+                <Form.Group className="me-3">
+                    <Form.Label>Card Type</Form.Label>
+                    <Form.Select
+                        value={selectedCard}
+                        onChange={(e) => setSelectedCard(e.target.value)}
+                    >
+                        <option value="all">All Cards</option>
+                        <option value="AMEXSERVICES">Amex Services</option>
+                        <option value="AMEXCREDIT">Amex Credit</option>
+                        <option value="BBVA">BBVA</option>
+                    </Form.Select>
+                </Form.Group>
+
+                <Button
+                    variant="primary"
+                    onClick={handleRetrieve}
+                    disabled={loading}
+                >
+                    {loading ? 'Loading...' : 'Retrieve Data'}
+                </Button>
+            </div>
+
+            <DataTable transactions={transactions} />
         </div>
     );
-}
+};
 
 export default DataRetrieval;

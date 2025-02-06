@@ -1,37 +1,31 @@
-import React from 'react';
+import { Table } from 'react-bootstrap';
 import './DataTable.css';
 
-function DataTable({transactions}) {
+const DataTable = ({ transactions = [] }) => {
     return (
-        <div className="table-container">
-            <table>
+        <div className="data-table-container">
+            <Table striped bordered hover responsive>
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Purchase Date</th>
                     <th>Description</th>
                     <th>Amount</th>
-                    <th>Account</th>
-                    <th>cardHolder</th>
-                    <th>Changed</th>
+                    <th>Card Type</th>
                 </tr>
                 </thead>
                 <tbody>
                 {transactions.map((transaction, index) => (
-                    <tr key={index} className={transaction.hasChanged ? 'changed' : ''}>
-                        <td>{transaction.transactionDate}</td>
-                        <td>{transaction.purchaseDate}</td>
+                    <tr key={index}>
+                        <td>{new Date(transaction.transactionDate).toLocaleDateString()}</td>
                         <td>{transaction.description}</td>
-                        <td>${transaction.amount}</td>
-                        <td>{transaction.account}</td>
-                        <td>{transaction.cardHolder}</td>
-                        <td>{transaction.hasChanged ? '✅' : '🔄'}</td>
+                        <td>${transaction.amount.toFixed(2)}</td>
+                        <td>{transaction.sourceType}</td>
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </Table>
         </div>
     );
-}
+};
 
 export default DataTable;
