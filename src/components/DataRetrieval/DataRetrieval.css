@@ -3,7 +3,7 @@
 .data-summary-container {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* Or center */
+    align-items: center; /* Or center */
     height: 100%; /* Important: Container takes full height */
     overflow: hidden; /* Prevents content from overflowing container */
 }

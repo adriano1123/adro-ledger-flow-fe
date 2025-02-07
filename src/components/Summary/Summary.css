@@ -1,16 +1,61 @@
 .summary-container {
     background: white;
-    border: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.summary-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.summary-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.summary-section {
+    flex: 1;
+    padding: 10px;
+}
+
+.users {
+    text-align: left;
+    border-right: 2px solid #ccc;
+    padding-right: 15px;
+}
+
+.cards {
+    text-align: right;
+    padding-left: 15px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 3px 0;
+    white-space: nowrap;
 }
 
 .total-amount {
-    font-size: 1.5rem;
     color: #4b37d0;
     font-weight: bold;
-    margin: 1rem 0;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 .summary-container.active {
@@ -21,4 +66,10 @@
 .summary-container p {
     margin: 1rem 0 0;
     color: #666;
+}
+
+.amount {
+    font-size: 24px;
+    color: #4c2be5;
+    font-weight: bold;
 }
