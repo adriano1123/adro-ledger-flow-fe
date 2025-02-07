@@ -1,12 +1,32 @@
 .data-table-container {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
+    flex: 1; /* Table takes available space */
+    overflow-y: auto; /* Add scrollbar if needed */
+    max-height: 500px; /* Set a max height for the table */
+    margin-right: 20px; /* Space between table and summary */
+    border: 2px dashed #6c5ce7;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: lightblue;
 }
 
 .table-responsive {
+    overflow-x: auto;
     border-radius: 12px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f0f0f0;
 }
 
 .table thead th {

@@ -1,0 +1,59 @@
+/* CSS (in your component's styles or CSS file) */
+
+.data-summary-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Or center */
+    height: 100%; /* Important: Container takes full height */
+    overflow: hidden; /* Prevents content from overflowing container */
+}
+
+.data-table-wrapper {
+    flex: 1;
+    min-height: 0; /* Allow the flex item to shrink properly */
+    overflow-y: auto;
+    max-height: calc(100vh - 200px); /* Adjust as needed */
+    padding: 10px;
+}
+
+
+.summary-wrapper {
+    width: 300px;
+    min-height: 0;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+
+/* Crucial: Style the table itself */
+.data-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Important for column widths */
+}
+
+.data-table-wrapper th,
+.data-table-wrapper td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+/* Optional: Style table header */
+.data-table-wrapper th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+/* The magic touch: Stop event propagation */
+.data-table-wrapper {
+    /* Add this to stop scroll events from bubbling up */
+    overflow-y: auto; /* Keep this for scrolling */
+    /* Add these two lines below */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS devices */
+    overscroll-behavior-y: contain; /* Stop scroll chaining */
+}

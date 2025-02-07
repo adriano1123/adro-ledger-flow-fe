@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import DataTable from '../DataTable/DataTable';
-import { Form, Button } from 'react-bootstrap';
-import { fetchTransactions } from '../../services/apiService';
+import {Button, Form} from 'react-bootstrap';
+import {fetchTransactions} from '../../services/apiService';
 import Summary from "../Summary/Summary";
+import './DataRetrieval.css'
 
 const DataRetrieval = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedCard, setSelectedCard] = useState('all');
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [total, setTotal] = useState(0);
 
     const handleRetrieve = async () => {
         try {
@@ -23,14 +23,8 @@ const DataRetrieval = () => {
                 monthParam,  // Pass formatted date
                 selectedCard === 'all' ? null : selectedCard
             );
-            setTransactions(data);
+            setTransactions([...data]);
             //setTotal(data.reduce((sum, t) => sum + t.amount, 0));
-            const excludedStrings = ["GRACIAS POR SU PAGO EN BBVA", "BMOVIL.PAGO TDC", "MSI"];
-            const sum = data.reduce((sum, t) => {
-                const shouldExclude = excludedStrings.some(str => t.description.includes(str));
-                return shouldExclude ? sum : sum + t.amount; // Conditional sum
-            }, 0);
-            setTotal(sum);
         } catch (error) {
             console.error('Error fetching data:', error);
             alert('Failed to retrieve transactions');
@@ -72,12 +66,19 @@ const DataRetrieval = () => {
                     {loading ? 'Loading...' : 'Retrieve Data'}
                 </Button>
             </div>
-
-            <DataTable transactions={transactions} />
-            {transactions.length > 0 && (
-                <Summary total={total}/>
+            {transactions && transactions.length > 0 && (
+                <div className="data-summary-container">
+                    <div className="data-table-wrapper">
+                        <DataTable transactions={transactions}/>
+                    </div>
+                    <div className="summary-wrapper">
+                        <Summary transactions={transactions}/>
+                    </div>
+                </div>
             )}
+
         </div>
+
     );
 };
 
