@@ -21,7 +21,7 @@ function App() {
                 </nav>
             </aside>
             <div className="app-container">
-                <h1 className="card-title text-purple mb-4">💳 Conchitas Credit Card Statement Processor</h1>
+                <h1 className="card-title text-purple mb-4">💳 The Mighty Conchitas Credit Card Statement Wizard</h1>
 
                 <Routes>
                     <Route path="/" element={<FileUploadPage/>}/>
